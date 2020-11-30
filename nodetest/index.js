@@ -8,7 +8,7 @@ console.log("Hello back world!");
 console.log (`Hola. Soy ${name} y tengo ${age} años`);
 console.log (gatitAscii());
 
-fs.writeFile("person.txt", `Hola. Soy ${name} y tengo ${age} años`, () => {
+fs.writeFile("person.txt", `Hola. Soy ${name} y tengo ${age} años`, gatitAscii(), () => {
   console.log("Todo ok");
 });
 
