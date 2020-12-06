@@ -15,13 +15,12 @@ router.get("/ej3/:name/", function (req, res, next) {
 //ejercicio4
 router.get("/ej4/:num/", function (req, res, next) {
 
-  res.send(`${req.params.num*2}`);
+  res.send(`${req.params.num * 2}`);
 });
 
   
 //ejercicio5
 router.get("/ej5/:str/", function (req, res, next) {
-
 let string = `${req.params.str}`
 let palin = string.split("").reverse().join("");
 if (palin === string) {res.send (string + " es un palindomo")}
