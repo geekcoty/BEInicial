@@ -53,6 +53,15 @@ router.get ("/axios", function (req,res, next) {
 // Desafio Axios
 const axiosController = require("../controllers/ejaxios");
 const axios = require("axios");
+const calcularController = require ("../controllers/calcular");
+const Calcular = require("../controllers/calcular");
+
+// Ejercicio cero
+//const calcularInstance = new Calcular();
+//router.get ("/calcular", function (req, res, next) {
+//calcularInstance.isPrime(req,res)
+//});
+
 // Ejercicio uno
 
 
