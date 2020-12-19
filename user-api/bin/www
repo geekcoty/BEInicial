@@ -8,6 +8,7 @@ const app = require('../app');
 const debug = require('debug')('user-api:server');
 const http = require('http');
 
+
 /**
  * Get port from environment and store in Express.
  */
@@ -15,8 +16,11 @@ const http = require('http');
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+// connect to db via mongoose
+
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost:27017/MongoDB', {
+
+mongoose.connect('mongodb://localhost:27017/users', {
  useNewUrlParser:true,
  useUnifiedTopology:true
 });
