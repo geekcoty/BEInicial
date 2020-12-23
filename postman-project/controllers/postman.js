@@ -22,11 +22,10 @@ class PostmanController{
   }
   modifyName(req,res) {
     const {index} = req.params
-    const {headers} = req
     const newName = req.body.name
     
     
-    if (index > -1 && newName !="" && headers.token) {
+    if (index > -1 && newName !="") {
         this.names.splice(index, 1);
         this.names.splice(index, 0, newName),
         res.status(200).send("usuario modificado con éxito");
