@@ -1,7 +1,9 @@
 class UserController {
   //inicialización del controller
-  constructor(userService){
+  constructor(userService, drinkService){
     this.userService = userService;
+    //llamamos a la segunda collection como variable de clase
+    this.drinkService = drinkService;
   }
   //llamar a un metodo
  async getUserByName(req,res) {
@@ -10,9 +12,17 @@ class UserController {
 
     // llamar a un metodo de servicio y pasarle el parametro
       const user = await this.userService.getUserByName(name)
+      const drink = await this.drinkService.getDrinkByName(user.favDrink)
       console.log(user, "controller")
-    
-      res.send(ok)
+      console.log(drink, "controller");
+
+    // requerir informacion de otra collection a traves del modelado de data
+    const data = {
+      nane: user.name,
+      favDrink: user.favDrink,
+      main: drink.mainIngredient,
+    }
+      res.json(data)
   }
 }
 
