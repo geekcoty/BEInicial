@@ -15,7 +15,9 @@ const http = require('http');
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+// mongoose connection to db
 const mongoose = require ("mongoose");
+//connection statement to db
 mongoose.connect("mongodb://localhost:27017/practicedb", {
   useNewUrlParser: true,
   useUnifiedTopology:true,
