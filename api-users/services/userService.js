@@ -15,7 +15,7 @@ return newUser.save()
 
 updateUser(user) {
   const updatedUser = User.findOneAndUpdate({_id:id}, data).exec();
-  return userupdatedUser
+  return updatedUser
 }
 
 deleteUser(user) {

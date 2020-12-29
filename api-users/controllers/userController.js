@@ -14,14 +14,15 @@ async getUsers(req,res) {
   res.send("ok")
   }
 
-  async updateUser(req,res){
-    const {id} = req.params
-    const newName = req.body.name
+ async updateUser(req,res){
+    const id = req.params.id
+    const {name} = req.body
     
-    
-    if (id && newName !="") {
-        this.names.splice(id, 1);
-        this.names.splice(id, 0, newName),
+    if (id && name !="") {
+       /* this.names.splice(id, 1);
+        this.names.splice(id, 0, newName)*/
+        const update = await this.userService.updateUser(id)
+        console.log(update)
         res.status(200).send("usuario modificado con éxito");
     }
      else 
@@ -31,7 +32,7 @@ async getUsers(req,res) {
 
 }
 
-async deleteUser(req,res) {
+deleteUser(req,res) {
 
 }
   }
