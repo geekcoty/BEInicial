@@ -14,9 +14,10 @@ return newUser.save()
 }
 
 updateUser(user) {
-  const updatedUser = User.findOneAndUpdate({_id:id}, data).exec();
+  const updatedUser = User.findById({_id:id}, data).exec();
   return updatedUser
 }
+
 
 deleteUser(user) {
   const deletedUser = User.deleteOne(id, function (err) {
