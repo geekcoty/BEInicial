@@ -6,13 +6,11 @@ router.get("/", function (req, res, next){
   res.send("Hola");
 });
 
-router.post(
-  "/login",
-  passport.authenticate("local"),
-  function(req, res, next){
-    return res.json("hola que hace");
-  }
-);
+router.post("/api/login", passport.authenticate("local"), (req, res) => {
+  return res.json({
+    ok: true,
+  });
+});
 
 router.get("/verify", function(req, res, next) {
   return res.json({
