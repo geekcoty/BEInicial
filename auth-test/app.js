@@ -7,6 +7,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 const app = express();
+const passportConfig = require ("./passport")
 
 app.use(logger('dev'));
 app.use(express.json());

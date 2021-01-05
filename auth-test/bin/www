@@ -15,6 +15,14 @@ const http = require('http');
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+const mongoose = require("mongoose");
+//connection statement to db
+mongoose.connect("mongodb://localhost:27017/auth", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+});
+
 /**
  * Create HTTP server.
  */
