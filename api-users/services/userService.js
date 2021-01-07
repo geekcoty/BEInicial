@@ -13,18 +13,20 @@ return newUser.save()
 
 }
 
-updateUser(user) {
-  const updatedUser = User.findById({_id:id}, data).exec();
-  return updatedUser
+updateUser(id,data) {
+  const query = User.findOneAndUpdate({_id:id}, {name: data}).exec();
+  return query;
 }
 
 
-deleteUser(user) {
-  const deletedUser = User.deleteOne(id, function (err) {
+deleteUser(id) {
+  const query = User.deleteOne(id, function (err) {
     if (err) console.log(err);
     console.log("Successful deletion");
   });
+  return query;
 }
+
 }
 
 module.exports = UserService
