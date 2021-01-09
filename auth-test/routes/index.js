@@ -1,5 +1,11 @@
 const express = require("express");
 const router = express.Router();
+
+const UserController = require ("./../controller/UserController")
+const UserService = require ("./../service/UserService")
+
+const UserInstance =  new UserController(new UserService)
+
 //requerimos passport
 const passport = require("passport");
 
@@ -20,5 +26,10 @@ router.post("/api/login",passport.authenticate("local"), (req, res) => {
 router.get("/verify", function(req, res, next) {
   return res.json(req.user);
 });
+
+//
+router.post ("/create", (req,res,next) =>{
+  UserInstance.createUser(req,res)
+} )
 
 module.exports = router;
