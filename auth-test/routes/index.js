@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const UserController = require ("./../controller/UserController")
-const UserService = require ("./../service/UserService")
+const UserController = require ("../controller/userController")
+const UserService = require ("../service/userService")
 
 const UserInstance =  new UserController(new UserService)
 

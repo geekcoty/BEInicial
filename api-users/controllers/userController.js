@@ -1,14 +1,14 @@
 class UserController {
-  constructor(UserService) {
-    this.UserService = UserService;
+  constructor(userService) {
+    this.userService = userService;
   }
 
   async getUsers(req, res) {
-    const users = await this.UserService.getUsers();
+    const users = await this.userService.getUsers();
     return res.json(users);
   }
   async addUser(req, res) {
-    const response = await this.UserService.addUser(req.body);
+    const response = await this.userService.addUser(req.body);
     console.log(response);
     res.send("ok");
   }
@@ -19,7 +19,7 @@ class UserController {
     const data = name;
 
     if (id && name != "") {
-      const update = await this.UserService.updateUser(id);
+      const update = await this.userService.updateUser(id);
       return console.log(update, data);
       res.status(200).send("usuario modificado con éxito");
     } else {
@@ -31,7 +31,7 @@ class UserController {
     const { id } = req.params;
 
     if (id) {
-      await this.UserService.deleteUser(id);
+      await this.userService.deleteUser(id);
       res.status(200).send("deleted");
     } else {
       res.status(400).send("not deleted");

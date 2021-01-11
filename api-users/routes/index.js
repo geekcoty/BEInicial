@@ -17,7 +17,7 @@ router.put("/modify/:id/", function(req,res,next) {
   UserInstance.updateUser(req,res);
 });
 
-router.delete("delete/:id", function (req, res,next){
+router.delete("/delete/:id", function (req, res,next){
   UserInstance.deleteUser(req,res);
 });
 module.exports = router;
