@@ -28,7 +28,7 @@ router.get("/verify", function(req, res, next) {
 });
 
 //
-router.post ("/create", (req,res,next) =>{
+router.post("/create", (req,res,next) =>{
   UserInstance.createUser(req,res)
 } )
 

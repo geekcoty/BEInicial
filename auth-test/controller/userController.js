@@ -1,28 +1,25 @@
-
 class UserController {
-
   constructor(UserService) {
-    this.UserService = UserService
+    this.UserService = UserService;
   }
 
- async createUser(req,res) {
-   //de donde viene la info del usuario: del body
-   const  { body } = req
-   const name = body.name.toLowerCase()
+  async createUser(req, res) {
+    const body = req.body;
+    const name = body.name.toLowerCase();
 
-   if (body && body.name && body.passowrd) {
-      // llamar al service
+    if (body && body.name && body.password) {
       try {
-      await this.UserService.createUser({...body, name});
-        res.sendStatus(200)
-      } catch (e){
-        console.log(e)
+        const user = await this.UserService.createUser({ ...body, name });
+        console.log(user);
+        return res.sendStatus(200);
+      } catch (err) {
+        console.log(err);
+        return res.sendStatus(500);
       }
-   } else {
-     return res.sendStatus(400);
-   }
- }
-
+    } else {
+      return res.sendStatus(400);
+    }
+  }
 }
 
-module.exports = UserController
+module.exports = UserController;

@@ -20,13 +20,11 @@ updateUser(id,data) {
 
 
 deleteUser(id) {
-  const query = User.deleteOne(id, function (err) {
-    if (err) console.log(err);
-    console.log("Successful deletion");
+  const query = User.deleteOne({_id: id}, function (err) {
+    if(err) console.log(err);
+    console.log("succesful deletion");
   });
-  return query;
+}
 }
 
-}
-
-module.exports = UserService
+module.exports = UserService;
