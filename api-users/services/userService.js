@@ -2,7 +2,7 @@ const User = require ("./../models/userModel")
 
 class UserService {
 getUsers () {
-  const query = User.find();
+  const query = User.find().skip(0).limit(7).exec();
   return query;
 
 }
