@@ -1,3 +1,4 @@
+//nombre del controller y del service en caps porque va a ser instanciado
 class UserController {
   //inicialización del controller
   constructor(userService, drinkService){
