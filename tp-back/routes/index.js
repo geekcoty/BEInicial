@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+const UserController = require ("./../controllers/userController")
+const UserService = require ("./../services/userService")
+const UserInstance = new UserController(new UserService())
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.send("Bienvenides al TP final de Back End");
@@ -34,14 +38,16 @@ router.delete("/movies/delete/:id", function(req,res,next) {
   res.send("borrar peliculas")
 });
 
+//USUARIOS
+
 //Muestra una lista de usuarios, no tiene restricciones de acceso
 router.get("/users", function (req, res,next) {
-  res.send("muestra lista de usuarios")
+  UserInstance.getUser(req,res)
 });
 
 //Muestra la información de un usuario particular, no tiene restricciones de acceso
 router.get("/users/:id", function (req, res, next) {
-  res.send("muestra un usuario particular")
+  UserInstance.findUser(req,res)
 });
 
 //Sirve para crear un usuario en la base de datos, no tiene restricciones de acceso
