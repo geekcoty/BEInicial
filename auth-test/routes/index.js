@@ -15,7 +15,6 @@ router.get("/", function (req, res, next){
 });
 
 //ruta al login
-
 router.post("/api/login",passport.authenticate("local"), (req, res) => {
   return res.json({
     ok: true
@@ -23,7 +22,7 @@ router.post("/api/login",passport.authenticate("local"), (req, res) => {
 });
 
 //ruta a la validación
-router.get("/verify", function(req, res, next) {
+router.get("/api/verify", function(req, res, next) {
   return res.json(req.user);
 });
 
