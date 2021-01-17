@@ -9,10 +9,14 @@ class UserService {
     const query = User.findOne({_id:id}).exec();
     return query
   }
-  addUser() {
-const newUser = new User(user)
-return newUser.save()
-}
+  addUser(data) {
+    const newUser = new User(data)
+    return newUser.save()
+  }
+  editUser(id){
+    const query = User.findOneAndUpdate({_id: id}).exec();
+    return query
+  }
 }
 
 module.exports = UserService

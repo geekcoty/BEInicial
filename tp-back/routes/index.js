@@ -52,7 +52,7 @@ router.get("/users/:id", function (req, res, next) {
 
 //Sirve para crear un usuario en la base de datos, no tiene restricciones de acceso
 router.post("/users/", function(req, res,next){
-  res.send("crea un usuario en la db")
+  UserInstance.addUser(req,res)
 });
 
 //Sirve para modificar un usuario en la base de datos. Necesita estar autenticado y ser admin para que se ejecute
