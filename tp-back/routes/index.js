@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const passport = require("passport");
 
 const UserController = require ("./../controllers/userController")
 const UserService = require ("./../services/userService")
@@ -56,13 +57,14 @@ router.post("/users/", function(req, res,next){
 });
 
 //Sirve para modificar un usuario en la base de datos. Necesita estar autenticado y ser admin para que se ejecute
-router.put("/users/edit/:id", function (req,res,next) {
-  res.send("modificación de usuario")
+router.put("/users/edit/:id", passport.authenticate("local"),function (req,res,next) {
+  UserInstance.editUser(req,res)
+
 })
 
 //Sirve para borrar un usuario de la base de datos. Necesita estar autenticado y ser admin para que se ejecute
-router.delete("/users/delete/:id", function (req,res,next){
-  res.send ("borrar usuarios")
+router.delete("/users/delete/:id", passport.authenticate("local") ,function (req,res,next){
+  UserInstance.deleteUser(req,res)
 })
 
 module.exports = router;

@@ -8,18 +8,8 @@ const indexRouter = require('./routes/index');
 
 // Passport require
 const passportConfig = require("./passport");
-const passport = require ("passport")
+const passport = require("passport");
 
-//Para la session
-
-const session = require ("express-session");
-
-const sessionMiddleware = session ({
-  name: "auth-test",
-  secret: "p4l4br4_m4g1c4",
-  saveUninitialized: false,
-  resave: false,
-});
 
 const app = express();
 

@@ -1,21 +1,27 @@
 const User = require ("./../models/User.js")
 
 class UserService {
-  getUser(){
+  getUser() {
     const query = User.find().exec();
-    return query
+    return query;
   }
-  findUser(id){
-    const query = User.findOne({_id:id}).exec();
-    return query
+  findUser(id) {
+    const query = User.findOne({ _id: id }).exec();
+    return query;
   }
   addUser(data) {
-    const newUser = new User(data)
-    return newUser.save()
+    const newUser = new User(data);
+    return newUser.save();
   }
-  editUser(id){
-    const query = User.findOneAndUpdate({_id: id}).exec();
-    return query
+  editUser(id,data) {
+  const query = User.findOneAndUpdate({_id:id}, {name: data}).exec();
+  return query;
+}
+  deleteUser(id) {
+    const query = User.deleteOne({ _id: id }.exec(), function (err) {
+      if (err) console.log(err);
+      console.log("succesful deletion");
+    });
   }
 }
 
