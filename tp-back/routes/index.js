@@ -1,6 +1,6 @@
 const express = require('express');
-const router = express.Router();
 const passport = require("passport");
+const router = express.Router();
 
 const UserController = require ("./../controllers/userController")
 const UserService = require ("./../services/userService")
@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
   res.send("Bienvenides al TP final de Back End");
 });
 
-//PELICULAS
+/*PELICULAS
 
 //Muestra un array con todas las películas. Solo se puede acceder autenticado
 router.get("/movies", function (req, res, next) {
@@ -37,7 +37,7 @@ router.put("/movies/edit/:id", function (req,res,next) {
 
 router.delete("/movies/delete/:id", function(req,res,next) {
   res.send("borrar peliculas")
-});
+});*/
 
 //USUARIOS
 

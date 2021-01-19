@@ -19,11 +19,11 @@ async findUser(req,res) {
 }
 
   async addUser(req, res) {
-    const data = req.body;
-    if (data) {
+    const {body} = req
+    const name = body.name.toLowerCase()
+    if (body && body.name && body.password) {
       try {
-        const response = await this.userService.addUser(data);
-        console.log(response);
+         await this.userService.addUser({...body,name});
         res.send("user added");
       } catch (e) {
         console.log(e);
@@ -35,15 +35,13 @@ async findUser(req,res) {
   }
 
   async editUser(req,res)  {
-    const { id } = req.params;
-    const { name } = req.body;
-    const data = name;
-
-    if (id && name != "") {
+    const  id  = req.params.id;
+    const  newInfo = req.body;
+  
+    if (id && newInfo != "") {
       try {
-        const update = await this.userService.updateUser(id);
-        return console.log(update, data);
-        res.status(200).send("succesfully modified user");
+        const update = await this.userService.editUser(id,newInfo);
+        return res.status(200).send("succesfully modified user");
       } catch (e) {
         console.log(e);
         res.status(500).send("error when modified");

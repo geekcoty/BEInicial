@@ -1,4 +1,3 @@
-
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
@@ -9,28 +8,24 @@ passport.use(
   new LocalStrategy(
     {
       usernameField: "name",
-      passwordField: "password"
+      passwordField: "password",
     },
     async (username, password, cb) => {
       try {
         const userData = await UserInstance.getByName(username);
         if (!userData) {
-          console.log("Entro al primero");
-          //Este usuario esta mal
+          console.log("Entró al primero");
           return cb(null, false);
         }
 
         console.log(userData.password, password);
         if (userData.password != password) {
-          console.log("Entro al segundo");
-
-          //Este usuario esta mal
+          console.log("Entró al segundo");
           return cb(null, false);
         }
 
         console.log(userData);
-        console.log("Todo esta bien");
-        //Este usuario esta bien
+        console.log("Todo está bien");
         return cb(null, userData);
       } catch (err) {
         console.log(err);
@@ -48,4 +43,3 @@ passport.deserializeUser(async (name, cb) => {
 
   cb(null, data);
 });
-
