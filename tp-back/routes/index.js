@@ -1,5 +1,6 @@
 const express = require('express');
 const passport = require("passport");
+const checkAdmin = require('../utils/checkAdmin');
 const router = express.Router();
 
 const UserController = require ("./../controllers/userController")
@@ -64,13 +65,13 @@ router.post("/users/", function(req, res,next){
 });
 
 //Sirve para modificar un usuario en la base de datos. Necesita estar autenticado y ser admin para que se ejecute
-router.put("/users/edit/:id", passport.authenticate("local"),function (req,res,next) {
+router.put("/users/edit/:id",checkAdmin,function (req,res,next) {
   UserInstance.editUser(req,res)
 
 })
 
 //Sirve para borrar un usuario de la base de datos. Necesita estar autenticado y ser admin para que se ejecute
-router.delete("/users/delete/:id",function (req,res,next){
+router.delete("/users/delete/:id",checkAdmin,function (req,res,next){
   UserInstance.deleteUser(req,res)
 })
 module.exports = router;
