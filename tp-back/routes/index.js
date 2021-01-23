@@ -1,6 +1,17 @@
 const express = require("express");
 const passport = require("passport");
 const checkAdmin = require("../utils/checkAdmin");
+const multer = require("multer")
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./uploads");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + "-" + Date.now() + ".png");
+  },
+});
+
+const upload = multer({ storage: storage });
 const router = express.Router();
 
 const UserController = require("./../controllers/userController");
@@ -39,10 +50,17 @@ router.get("/movies/:id", passport.authenticate, function (req, res, next) {
 //Sirve para crear una película en la base de datos. Necesita estar autenticado y ser admin para que se ejecute
 router.post(
   "/movies",
+
   passport.authenticate,
   checkAdmin,
+  upload.single("avatar"),
   function (req, res, next) {
     MovieInstance.addMovie(req, res);
+    res.json({
+      error: false,
+      file: req.file,
+      body: req.body,
+    });
   }
 );
 
