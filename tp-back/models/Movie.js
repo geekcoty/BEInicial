@@ -15,7 +15,7 @@ const movieSchema = mongoose.Schema({
   mediaType: {
     type: String,
     required: true,
-  },
+  }
 });
 
 module.exports = mongoose.model("Movie", movieSchema);

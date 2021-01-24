@@ -12,28 +12,28 @@ class MovieController {
   async findMovie(req, res) {
     const {id} = req.params
     if (id) {
-      try {const movie = await this.movieService.findMovie(); res.sendStatus(200).json(movie)} catch (error){console.log(error)}
-    } else {res.sendStatus(404).send("id not found")}
+      try {const movie = await this.movieService.findMovie(); res.status(200).json(movie)} catch (error){console.log(error)}
+    } else {res.status(404).send("id not found")}
   }
 
   async addMovie(req, res) {
     const {body} = req
-    if (body) {
+    const movie = body
+    if (movie) {
       try {
-        const newMovie = await this.movieService.addMovie();
+        const newMovie = await this.movieService.addMovie(movie);
         this.movies.push(newMovie);
-        res.sendStatus(200).send("successfully added movie")
+        res.status(200).send("successfully added movie");
       } catch (error) {console.log(error)}
-    } else {res.sendStatus(400).send("movie not added")}
+    } else {res.status(400).send("movie not added")}
   }
 
   async editMovie(req, res) {
     const id = req.params.id;
     const newInfo = req.body;
-
     if (id && newInfo != "") {
       try {
-        const update = await this.movieService.editUser(id, newInfo);
+        const update = await this.movieService.editMovie(id, newInfo);
         return res.status(200).send("succesfully modified user");
       } catch (e) {
         console.log(e);
@@ -48,8 +48,8 @@ class MovieController {
     const {id} = req.params
     if (id) {
     try {const movie = await this.movieService.deleteMovie(id);
-    res.sendStatus(200).send("movie deleted")} catch (error){console.log(error)}
-  } else {res.sendStatus(404).send("movie not found")}
+    res.status(200).send("movie deleted")} catch (error){console.log(error)}
+  } else {res.status(404).send("movie not found")}
 }
 }
 module.exports = MovieController;

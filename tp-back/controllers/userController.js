@@ -14,6 +14,7 @@ async findUser(req,res) {
     try {
        const foundUser = await this.userService.findUser(id); res.json(foundUser);
     } catch (e) {res.status(500).send("invalid id")}
+    
     // ver como hacer que salga este error
   } else {res.status(400).send("please, enter a valid id")}
 }

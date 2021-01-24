@@ -1,14 +1,14 @@
 function checkAdmin(req, res, next) {
   if (req.user) {
     if (req.user.isAdmin) {
-      console.log("es admin");
+      console.log("is admin");
       next()
-    } else {
-      console.log("no es admin");
+    } else { es
+      console.log("not admin");
       res.sendStatus(403);
     }
   } else {
-    console.log("no hay user logueado");
+    console.log("no logged user");
     res.sendStatus(401)
   }
 }

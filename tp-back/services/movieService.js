@@ -7,7 +7,7 @@ class MovieService {
   }
 
   findMovie() {
-    const query = Movie.findOne({ id }).exec();
+    const query = Movie.findOne({ _id: id }).exec();
     return query;
   }
 
@@ -15,7 +15,6 @@ class MovieService {
     const newMovie = new Movie(movie);
     return newMovie.save();
   }
-
 
   editMovie(id, data) {
     const query = Movie.findOneAndUpdate({ id }, data).exec();
