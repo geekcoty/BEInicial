@@ -10,14 +10,21 @@ class MovieController {
   }
 
   async findMovie(req, res) {
-    const movie = await this.movieService.findMovie();
-    res.json(movie);
+    const {id} = req.params
+    if (id) {
+      try {const movie = await this.movieService.findMovie(); res.sendStatus(200).json(movie)} catch (error){console.log(error)}
+    } else {res.sendStatus(404).send("id not found")}
   }
 
-  // FALTA EL MIDDLEWARE DE MULTER ACA
   async addMovie(req, res) {
-    const newMovie = await this.movieService.addMovie();
-    res.json(newMovie);
+    const {body} = req
+    if (body) {
+      try {
+        const newMovie = await this.movieService.addMovie();
+        this.movies.push(newMovie);
+        res.sendStatus(200).send("successfully added movie")
+      } catch (error) {console.log(error)}
+    } else {res.sendStatus(400).send("movie not added")}
   }
 
   async editMovie(req, res) {
@@ -38,9 +45,11 @@ class MovieController {
   }
 
   async deleteMovie(req,res){
-    const movie = await this.movieService.deleteMovie(id)
-    res.send("deleted")
-  }
+    const {id} = req.params
+    if (id) {
+    try {const movie = await this.movieService.deleteMovie(id);
+    res.sendStatus(200).send("movie deleted")} catch (error){console.log(error)}
+  } else {res.sendStatus(404).send("movie not found")}
 }
-
+}
 module.exports = MovieController;
