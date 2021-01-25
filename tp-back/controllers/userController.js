@@ -37,11 +37,11 @@ async findUser(req,res) {
 
   async editUser(req,res)  {
     const  id  = req.params.id;
-    const  newInfo = req.body;
+    const  newUserInfo = req.body;
   
-    if (id && newInfo != "") {
+    if (id && newUserInfo != "") {
       try {
-        const update = await this.userService.editUser(id,newInfo);
+        const updatedUser = await this.userService.editUser(id,newUserInfo);
         return res.status(200).send("succesfully modified user");
       } catch (e) {
         console.log(e);

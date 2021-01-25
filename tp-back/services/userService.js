@@ -20,8 +20,8 @@ class UserService {
     });
   }
 
-  editUser(id, data) {
-    const query = User.findOneAndUpdate({ id }, data).exec();
+  editUser(id, newdata) {
+    const query = User.findOneAndUpdate({ id }, newdata).exec();
     return query;
   }
 
