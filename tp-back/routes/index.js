@@ -1,19 +1,20 @@
 const express = require("express");
 const passport = require("passport");
+
+const checkAdmin = require("../utils/checkAdmin");
+const checkAuth = require("./../utils/checkAuth");
+
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "./uploads");
   },
   filename: function (req, file, cb) {
-    cb(null, file.fieldname + "-" + Date.now() + ".jpg");
+    cb(null, file.fieldname + "-" + Date.now() + ".jpeg");
   },
 });
 
 const upload = multer({ storage: storage });
-
-const checkAdmin = require("../utils/checkAdmin");
-const checkAuth = require("./../utils/checkAuth");
 
 const router = express.Router();
 
@@ -31,14 +32,14 @@ router.get("/", function (req, res, next) {
   res.send("Bienvenides al TP final de Back End");
 });
 
-//PELICULAS
-
-//Passport login
-router.post("/movies/login", passport.authenticate("local"), (req, res) => {
+// API LOGIN
+router.post("/login", passport.authenticate("local"), (req, res) => {
   return res.json({
     ok: true,
   });
 });
+
+//PELICULAS
 
 //Muestra un array con todas las películas. Solo se puede acceder autenticado
 router.get("/movies", checkAuth, function (req, res, next) {
@@ -53,7 +54,8 @@ router.get("/movies/:id", checkAuth, function (req, res, next) {
 //Sirve para crear una película en la base de datos. Necesita estar autenticado y ser admin para que se ejecute
 router.post(
   "/movies",
-  checkAdmin, 
+  checkAdmin,
+  upload.single("movie-cover"),
   function (req, res, next) {
     MovieInstance.addMovie(req, res);
   }
@@ -71,13 +73,6 @@ router.delete("/movies/delete/:id", checkAdmin, function (req, res, next) {
 });
 
 //USUARIOS
-
-//Passport login
-router.post("/users/login", passport.authenticate("local"), (req, res) => {
-  return res.json({
-    ok: true,
-  });
-});
 
 //Muestra una lista de usuarios, no tiene restricciones de acceso
 router.get("/users", function (req, res, next) {

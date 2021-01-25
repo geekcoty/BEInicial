@@ -20,14 +20,13 @@ class UserService {
     });
   }
 
-  editUser(id,data) {
-      const query = User.findOneAndUpdate(
-        {id},data).exec();
-      return query;
-    };
+  editUser(id, data) {
+    const query = User.findOneAndUpdate({ id }, data).exec();
+    return query;
+  }
 
   deleteUser(id) {
-    const query = User.deleteOne({ _id: id}, function (err) {
+    const query = User.deleteOne({ _id: id }, function (err) {
       if (err) console.log(err);
       console.log("succesful deletion");
     });

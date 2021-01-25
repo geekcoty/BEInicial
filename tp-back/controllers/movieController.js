@@ -17,7 +17,7 @@ class MovieController {
   }
 
   async addMovie(req, res) {
-    const movie = req.body
+    const movie = req.body  
     if (movie) {
       try {
         const newMovie = await this.movieService.addMovie(movie);
@@ -33,7 +33,7 @@ class MovieController {
     if (id && newInfo != "") {
       try {
         const update = await this.movieService.editMovie(id, newInfo);
-        return res.status(200).send("succesfully modified user");
+        return res.status(200).send("succesfully modified movie");
       } catch (e) {
         console.log(e);
         res.status(500).send("error when modified");
