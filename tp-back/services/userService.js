@@ -21,14 +21,14 @@ class UserService {
   }
 
   editUser(id, newdata) {
-    const query = User.findOneAndUpdate({ id }, newdata).exec();
+    const query = User.findOneAndUpdate({ _id: id }, newdata).exec();
     return query;
   }
 
   deleteUser(id) {
     const query = User.deleteOne({ _id: id }, function (err) {
       if (err) console.log(err);
-      console.log("succesful deletion");
+      console.log("succesfully deleted");
     });
   }
   //passport middleware
