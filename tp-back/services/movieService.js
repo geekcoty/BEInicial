@@ -11,10 +11,11 @@ class MovieService {
     return query;
   }
 
-  addMovie(movie) {
-    const newMovie = new Movie(movie);
+  addMovie(data) {
+    const newMovie = new Movie(data)
     return newMovie.save();
   }
+  
 
   editMovie(id, data) {
     const query = Movie.findOneAndUpdate({ id }, data).exec();

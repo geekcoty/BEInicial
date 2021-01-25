@@ -17,8 +17,7 @@ class MovieController {
   }
 
   async addMovie(req, res) {
-    const {body} = req
-    const movie = body
+    const movie = req.body
     if (movie) {
       try {
         const newMovie = await this.movieService.addMovie(movie);
